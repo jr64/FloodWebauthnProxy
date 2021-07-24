@@ -19,6 +19,9 @@ RUN adduser \
 COPY --from=build /app/flood-webauthn /app/flood-webauthn
 COPY --from=build /src/static /app/static
 
+RUN mkdir /users/ && chown app:app /users/
+
 USER app:app
 
+CMD ["--userdb-directory", "/users/"]
 ENTRYPOINT /app/flood-webauthn
