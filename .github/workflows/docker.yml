@@ -29,6 +29,13 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       -
+        name: Login to GitLab Container Registry
+        uses: docker/login-action@v1 
+        with:
+          registry: registry.gitlab.com
+          username: github
+          password: ${{ secrets.GITLAB_REGISTRY_TOKEN }}
+      -
         name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -36,3 +43,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/jr64/flood-webauthn-proxy:latest
+            registry.gitlab.com/jr64/dockerflood/flood-webauthn-proxy:latest
