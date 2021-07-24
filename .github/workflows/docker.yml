@@ -35,4 +35,4 @@ jobs:
           context: .
           push: true
           tags: |
-            jr64/flood-webauthn-proxy
+            ghcr.io/jr64/flood-webauthn-proxy:latest
